@@ -1,0 +1,36 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Прогноз погоды</title>
+{% endblock %} {% block content %}
+<body>
+  <div class="container-fluid text-center">
+    <div class="card shadow-lg border-0 rounded-lg mt-5">
+      <div class="card-header">
+        <h3 class="text-center font-weight-light my-4">Прогноз одежды и погоды</h3>
+      </div>
+      <div class="card-body">
+        {% if error %}
+    <strong><h5 class="alert alert-danger">{{error}}</h5></strong>
+    {% endif %}
+    <h2>Привет, это твой помошник по погоде</h2>
+    <p>Впиши свой город и выбери некоторые параметры</p>
+    <form action="{% url 'generated_weather' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      <input type="text" name="city" placeholder="Город" />
+    </div>
+    <div class="form-group">
+      <input type="checkbox" name="clothes_check" /> Прогноз одежды
+    </div>
+    <div class="form-group">
+      <input type="checkbox" name="weather_now" /> Текущая погода
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary">
+        Узнать прогноз
+      </button>
+    </div>
+    </form>
+    <img class="img-fluid" src="{% static 'img/weather.jpg' %}" width="650" alt="" />
+  </div>
+  {% endblock %}
+</body>

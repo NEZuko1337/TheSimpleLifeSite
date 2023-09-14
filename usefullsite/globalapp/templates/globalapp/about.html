@@ -1,0 +1,21 @@
+{% extends 'globalapp/base.html' %} {% load static %} {% block title %}
+<title>О нас</title>
+{% endblock %} {% block content %}
+<body>
+    <div class="container-fluid text-center">
+        <h1>Для чего был создан сия сайт</h1>
+        <p>
+          Мне 19 лет, учусь в университете, параллельно изучая python и django. 
+          Решил попробовать создать нечто большее, чем обычно, все мои прошлые проекты можно посмотреть тут: <br>
+          <a href="https://github.com/NEZuko1337/" target="_blank"><button class="btn btn-primary" type="submit">Ссылочка на гит</button></a> <br>
+          Или нажать на фотку ниже.
+        </p>
+        <a href="https://github.com/NEZuko1337/" target="_blank"><img class="img-fluid" src="{% static 'img/about.jpg' %}" width="695" alt="Фоточка"></a>
+        <h3>
+            Подведу итог, если говорить вкратце, практика и ничего больше. Надеюсь, смогу помочь тебе тем функционалом, что предоставляет мой сайт.
+        </h3>
+      </body>
+    </div>
+  {% endblock %}
+</html>
+

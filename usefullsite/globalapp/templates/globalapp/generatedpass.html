@@ -1,0 +1,20 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Сгенерированный пароль</title>
+{% endblock %} {% block content %}
+<body>
+  <div class="container-fluid text-center">
+    <h1 class="alert alert-info">Твой крутой пароль снизу :</h1>
+    <h2 class="alert alert-success">{{password}}</h2>
+    <img
+      class="img-fluid"
+      src="{% static 'img/pass.png' %}"
+      width="350"
+      alt="Фоточка"
+    />
+    <br /><br /><br />
+    <a href="">
+      <button type="submit" class="btn btn-primary">Сгенерировать новый</button>
+    </a>
+  </div>
+  {% endblock %}
+</body>

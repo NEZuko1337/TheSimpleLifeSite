@@ -1,0 +1,29 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Регистрация</title>
+
+{% endblock %}
+  {% block content %}
+    <body>
+    <div class="container-fluid text-center">
+        <h1 class="alert alert-success">Регистрация</h1>
+        <form class="alert alert-info" method="post" action="{% url 'registerUser' %}" enctype="multipart/form-data">
+            {% if error_message %}
+            <h5 class="alert alert-danger">{{error_message}}</h5>
+            {% endif %}
+            {% csrf_token %}
+            <label class="text-center" for="{{ form.username.id_for_label }}">Логин:
+            <h2 class="text-center">{{form.username}}</h2>
+            <label for="{{ form.email.id_for_label }}">Эл.почта:</label>
+            <h2 class="text-center">{{form.email}}</h2>
+            <label  for="{{ form.password1.id_for_label }}">Пароль:</label>
+            <h2 class="text-center">{{form.password1}}</h2>
+            <label for="{{ form.password2.id_for_label }}">Повторите пароль:</label>
+            <h2 class="text-center">{{form.password2}}</h2>
+            Фото:
+            <h5 class="text-center img-fluid">{{form.img}}</h5>
+        </form>
+    <button class="btn btn-outline-warning" type="submit">Зарегистрироваться</button>
+    </div>
+    </body>
+  {% endblock %}
+</html>

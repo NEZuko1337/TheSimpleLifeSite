@@ -1,0 +1,52 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Прогноз погоды</title>
+
+{% endblock %} {% block content %}
+<body>
+    <div class="container-fluid text-center">
+        <h2 class="alert alert-info">Вот вся та информация которую ты хотел увидеть <br>
+          Погода в городе: {{city}}
+        </h2>
+        {% if temp and feels_like and humidity and advice %}
+        <h4 class="alert alert-dark">Температура на данный момент : {{temp}} °C <img class="img-fluid" src="/static/{{ photourl }}" width="70" height="70"  alt="Фото погодных условий"> <br>
+
+          Ощущается как: {{feels_like}} °C <br>
+          Влажность: {{humidity}} <br>
+          Прогноз одежды: {{advice}}
+          <br>
+          Сейчас на улице: {{main_weather}} <br>
+          Уточнение по прогнозу: {{weather_description}} <br>
+        </h4>
+        <h4 class="alert alert-dark">Температура в течение следующих трех часов : {{next_temp}} °C <img class="img-fluid" src="/static/{{ next_photo }}" width="70" height="70"  alt="Фото погодных условий"> <br>
+          Будет ощущаться как: {{next_feels_like}} °C <br>
+          Влажность будет около: {{next_humidity}} <br>
+          Прогноз одежды через 3 часа: {{next_advice}}
+          <br>
+          Через три часа на улице будет : {{next_main_weather}} <br>
+          Уточнение по прогнозу: {{next_weather_description}} <br>
+        </h4>
+        {% endif %}
+
+          {% if advice and not temp and not feels_like and not humidity  %}
+          <h4 class="alert alert-success">Прогноз одежды: {{advice}}</h4>
+          <img class="img-fluid" src="{% static 'img/only_for_clothes.jpg' %}" width="400" alt="">
+          {% endif %}
+
+          {% if temp and feels_like and humidity and not advice %}
+          <h4 class="alert alert-dark">Температура на данный момент : {{temp}} °C <img class="img-fluid" src="/static/{{ photourl }}" width="70" height="70"  alt="Фото погодных условий"> <br>
+            Ощущается как: {{feels_like}} °C <br>
+            Влажность: {{humidity}} <br>
+            Сейчас на улице: {{main_weather}} <br>
+            Уточнение по прогнозу: {{weather_description}} <br>
+          </h4>
+          <h4 class="alert alert-dark">Температура в течение следующих трех часов : {{next_temp}} °C <img class="img-fluid" src="/static/{{ next_photo }}" width="70" height="70"  alt="Фото погодных условий"> <br>
+            Будет ощущаться как: {{next_feels_like}} °C <br>
+            Влажность будет около: {{next_humidity}} <br>
+            Через три часа на улице будет : {{next_main_weather}} <br>
+            Уточнение по прогнозу: {{next_weather_description}} <br>
+          </h4>
+          {% endif %}
+      </body>
+    </div>
+  {% endblock %}
+</html>

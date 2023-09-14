@@ -1,0 +1,81 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Калькулятор</title>
+
+{% endblock %}
+  {% block content %}
+  <body>
+    <div class="container-fluid text-center">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+      <div class="card-header">
+        <h3 class="text-center font-weight-light my-4">Калькулятор</h3>
+      </div>
+      <h1>Не знаю зачем тебе нужен калькулятор, но ладно</h1>
+        <p>
+            Самый тупой и самый простой калькулятор, я ненавижу работу с css, не особо интересно, поэтому все сделано максимально втупую
+        </p>
+        {% if error %}
+        <h3 class="alert alert-danger">{{error}}</h1>
+        {% endif %}
+        <form action="{% url 'calculate' %}" method="post" class="form-check">
+            {% csrf_token %}
+            {% if num1 %}
+            <input type="text" name="number1" value="{{num1}}" placeholder="Введи первое число">
+            {% else %}
+            <input type="text" name="number1" placeholder="Введи первое число">
+            {% endif %}
+            {% if operation == '+' %}
+            <select name="operation">
+                <option value="+" selected="selected">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+              </select>
+            {% elif operation == '-' %}
+            <select name="operation">
+              <option value="+">+</option>
+              <option value="-" selected="selected">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+            </select>
+            {% elif operation == '*' %}
+            <select name="operation">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*" selected="selected">*</option>
+              <option value="/">/</option>
+            </select>
+            {% elif operation == '/' %}
+            <select name="operation">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/" selected="selected">/</option>
+            </select>
+            {% else %}
+            <select name="operation">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="*">*</option>
+              <option value="/">/</option>
+            </select>
+            {% endif %}
+            {% if num2 %}
+            <input type="text" name="number2" value="{{num2}}" placeholder="Введи второе число">
+            {% else %}
+            <input type="text" name="number2" placeholder="Введи второе число">
+            {% endif %}
+            {% if result %}
+            = <input type="text" value="{{ result }}" readonly>
+            {% else %}
+            =<input type="text" readonly>
+            {% endif %}
+            <br>
+            <button type="submit">Рассчитать</button>
+            <br>
+            <img class="img-fluid" src="{% static 'img/calc.png' %}" width="700" alt="Фоточка">
+          </div>
+        </form>
+      </body>
+    </div>
+  {% endblock %}
+</html>

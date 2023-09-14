@@ -1,0 +1,68 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Переводчик</title>
+
+{% endblock %}
+  {% block content %}
+  <body>
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+    crossorigin="anonymous"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"
+  ></script>
+    <div class="container-fluid text-center">
+        <h1 class="alert alert-info">Добро пожаловать на страницу с переводчиком</h1>
+        <p class="alert alert-warning">
+          Лучший переводчик, лучше ваших этих яндексов, гуглов, а deepL по сравнению с моим переводчиком нервно курит в сторонке.
+          Введи, что тебе необходимо перевести и выбери с какого и на какой язык перевести, 
+          их тут пока мало, но в будущем будут апгрейды(если мне не будет впадлу)
+        </p>
+        <form method="post" action="{% url 'translated_text' %}">
+          {% csrf_token %}
+          {% if error %}
+            <h5 class="alert alert-danger">{{error}}</h5>
+            {% endif %}
+          <p>Выбери язык с которого ты хочешь перевести текст:
+            <select name="language_from">
+              <option value="ru">Русский</option>
+              <option value="en">Английский</option>
+              <option value="it">Итальянский</option>
+              <option value="de">Немецкий</option>
+              <option value="fr">Французский</option>
+              <option value="es">Испанский</option>
+              <option value="ko">Корейский</option>
+            </select>
+          </p>
+            {%if text_to_translate%}
+            <input class="form-control-lg w-50 text-center" placeholder="Введите текст, который вы хотите перевести" value="{{text_to_translate}}" type="text" name="text_to_translate">
+            {% else %}
+            <input class="form-control-lg w-50 text-center" placeholder="Введите текст, который вы хотите перевести" type="text" name="text_to_translate">
+            {% endif %}
+            {% if translatedText %}
+            <input class="form-control-lg w-50 text-center" type="text" readonly placeholder="Тут выводится перевод, можешь ничего не трогать" value="{{ translatedText }}">
+            {% endif %}
+            
+            <p> Выбери язык на который ты хочешь перевести текст:
+            <select name="language_to">
+                <option value="ru">Русский</option>
+                <option value="en" selected="selected">Английский</option>
+                <option value="it">Итальянский</option>
+                <option value="de">Немецкий</option>
+                <option value="fr">Французский</option>
+                <option value="es">Испанский</option>
+                <option value="ko">Корейский</option>
+            </select>
+            <br>
+            <button class="btn btn-outline-success" type="submit">Перевести</button> <br>
+            <img class="img-fluid" src="{% static 'img/translate.jpg' %}" width="630" alt="Фоточка">
+          </p>
+        </form>
+    </div>
+  </body>
+  {% endblock %}
+</html>

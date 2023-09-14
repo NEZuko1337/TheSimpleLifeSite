@@ -1,0 +1,17 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Контакты</title>
+{% endblock %}
+  {% block content %}
+  <body>
+    <div class="container-fluid text-center">
+        <h1 class="alert alert-info">Тут вы найдете всю контактную информацию обо мне!</h1>
+        <h2 class="alert alert-dark rounded-5">
+        <a class="img-fluid" href="https://vk.com/zuko1337" target="_blank"><img src="{% static 'img/vk.png' %}" height="100" alt="ВК"></a>
+        <a class="img-fluid" href="https://github.com/NEZuko1337/" target="_blank"><img src="{% static 'img/git.png' %}" height="100" alt="ВК"></a>
+        <a class="img-fluid" href="https://www.youtube.com/channel/UCVXfPx0MlHhRdo8fX5RY6AQ" target="_blank"><img src="{% static 'img/yt.png' %}" height="100" alt="ВК"></a>
+        <a class="img-fluid" href="mailto:zuko13371@yandex.ru" target="_blank" ><img src="{% static 'img/email.png' %}" height="100" alt=""></a>
+      </h2>
+      </body>
+    </div>
+  {% endblock %}
+</html>

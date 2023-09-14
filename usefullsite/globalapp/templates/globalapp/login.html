@@ -1,0 +1,25 @@
+{% extends 'globalapp/base.html' %}{% load static %} {% block title %}
+<title>Войти</title>
+
+{% endblock %}
+{% block content %}
+  <body>
+    <div class="container-fluid text-center">
+      <h1 class="alert alert-success">Войти в аккаунт</h1>
+        <form class="alert alert-info" action="{% url 'loginUser' %}" method="post">
+            {% csrf_token %}
+            {% if error_message %}
+            <h5 class="alert alert-danger">{{error_message}}</h5>
+            {% endif %}
+            <label class="text-center" for="{{ form.username.id_for_label }}">Введи логин:
+            <h2 class="text-center">{{form.username}}</h2>
+            <label class="text-center" for="{{ form.password.id_for_label }}">Введи пароль:
+            <h2 class="text-center">{{form.password}}</h2>
+            <button class="btn btn-outline-warning" type="submit">Войти в аккаунт</button>
+            <br>
+        </form>
+        <img class="img-fluid" src="{% static 'img/login.png' %}" width="275" alt="Фоточка">
+    </div>
+  </body>
+  {% endblock %}
+</html>
